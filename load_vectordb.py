@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from absl import flags, app
-from os import walk
+from os import walk, environ
 from os.path import exists, join, splitext
 from tqdm import tqdm
 from langchain_neo4j import Neo4jVector
@@ -15,6 +15,7 @@ def add_options():
   flags.DEFINE_string('input_dir', default = 'patents', help = 'path to directory')
 
 def main(unused_argv):
+  environ['OCR_AGENT'] = 'tesseract'
   embedding = HuggingFaceEmbeddings(model_name = "intfloat/multilingual-e5-base")
   vectordb = Neo4jVector(
     embedding = embedding,
