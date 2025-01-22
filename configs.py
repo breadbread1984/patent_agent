@@ -9,3 +9,7 @@ max_history_len = 5
 
 service_host = 'localhost'
 service_port = 8081
+
+huggingface_token = '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'
+
+tgi_host = 'http://localhost:8080'
