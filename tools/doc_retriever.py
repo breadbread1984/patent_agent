@@ -36,6 +36,6 @@ def load_document_retriever(vectordb):
           doc.metadata['patent_path'] = a['patent_path']
           chunks.append(doc)
       return DocumentRetrieverOutput(chunks = chunks)
-  retriever = vectordb.as_retriever()
+  retriever = vectordb.as_retriever(search_kwargs = {'k': 5})
   return DocumentRetrieverTool(config = DocumentRetrieverConfig(retriever = retriever, vectordb = vectordb))
 

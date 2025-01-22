@@ -24,6 +24,6 @@ def load_chunk_retriever(vectordb):
     def _run(self, query: str, run_manager: Optional[CallbackManagerForToolRun] = None) -> ChunkRetrieverOutput:
       docs = self.config.retriever.invoke(query)
       return ChunkRetrieverOutput(chunks = docs)
-  retriever = vectordb.as_retriever()
+  retriever = vectordb.as_retriever(search_kwargs = {'k': 5})
   return ChunkRetrieverTool(config = ChunkRetrieverConfig(retriever = retriever))
 
